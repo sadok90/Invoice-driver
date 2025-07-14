@@ -19,21 +19,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             InvoiceTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                val invoice = Invoice(
+                    id = "Invoice-2025-001",
+                    company = "MsjRide",
+                    fromPlace = "Place 1",
+                    toPlace = "Place 2",
+                    date = "14/07/2025",
+                    totalHt = 10.0,
+                    taxRate = 0.1,
+                    customer = "Adem",
+                    nbKilometre = 5.3,
+                    paymentMethod = "CB"
+
+                )
+                InvoiceItem(invoice)
             }
         }
     }
 }
 
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
+fun InvoiceItem(invoice: Invoice, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
+        text = "Invoice = ${invoice.id}",
         modifier = modifier
     )
 }
@@ -42,6 +50,19 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun GreetingPreview() {
     InvoiceTheme {
-        Greeting("Android")
+        val invoice = Invoice(
+            id = "Invoice-2025-001",
+            company = "MsjRide",
+            fromPlace = "Place 1",
+            toPlace = "Place 2",
+            date = "14/07/2025",
+            totalHt = 10.0,
+            taxRate = 0.1,
+            customer = "Adem",
+            nbKilometre = 5.3,
+            paymentMethod = "CB"
+
+        )
+        InvoiceItem(invoice)
     }
 }
